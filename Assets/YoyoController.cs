@@ -17,18 +17,19 @@ public class YoyoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Mouse Y") > 4)
+        print(joint.distance);
+        if (Input.GetAxis("Mouse Y") > 0)
         { 
             if (joint.distance < maxdist)
             {
-                joint.distance += 0.1f * maxdist * Time.deltaTime;
+                joint.distance += maxdist * Time.deltaTime;
             }
         }
-        else if (Input.GetAxis("Mouse Y") < 0) 
+        else if (Input.GetAxis("Mouse Y") < 0)
         {
             if (joint.distance > mindist)
             {
-                joint.distance -= 0.1f * maxdist * Time.deltaTime;
+                joint.distance -=  maxdist * Time.deltaTime;
             }
         }
     }
