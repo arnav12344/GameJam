@@ -11,6 +11,7 @@ public class YoyoController : MonoBehaviour
     public float yoyoUpSpeed;
     bool goUp = false;
     bool goDown = true;
+    public SliderScript sliderScript;
     void Start()
     {
         joint.distance = mindist;
@@ -31,6 +32,7 @@ public class YoyoController : MonoBehaviour
             Debug.Log("goind up");
             StopAllCoroutines();
             StartCoroutine(goUpYoyo());
+            sliderScript.CheckValue();
         }
     }
     IEnumerator goUpYoyo()
