@@ -20,16 +20,13 @@ public class YoyoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Input.GetAxisRaw("Mouse Y"));
         if (Input.GetAxisRaw("Mouse Y") <-0.1f && goDown)
         {
-            Debug.Log("goind down");
             StopAllCoroutines();
             StartCoroutine(goDownYoyo());
         }
         else if (Input.GetAxisRaw("Mouse Y") > 0.1f && goUp)
         {
-            Debug.Log("goind up");
             StopAllCoroutines();
             StartCoroutine(goUpYoyo());
             sliderScript.CheckValue();

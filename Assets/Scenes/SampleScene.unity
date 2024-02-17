@@ -298,6 +298,7 @@ MonoBehaviour:
   maxdist: 20
   mindist: 5
   yoyoUpSpeed: 5.2
+  sliderScript: {fileID: 1648790927}
 --- !u!1 &123714112
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +982,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1054,6 +1056,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cce397430d2aa49890a369d3ae2934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &872230612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1648790925}
   - component: {fileID: 1648790926}
+  - component: {fileID: 1648790927}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -2081,12 +2096,29 @@ MonoBehaviour:
   m_HandleRect: {fileID: 872230613}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1648790927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648790924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7eed237a8eb17489b3cee538fb1329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valueSpeed: 40
+  slider: {fileID: 1648790926}
+  maxValue: 40
+  minValue: 60
+  currValue: 0
 --- !u!1 &1723574187
 GameObject:
   m_ObjectHideFlags: 0
