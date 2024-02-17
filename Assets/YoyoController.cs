@@ -8,7 +8,9 @@ public class YoyoController : MonoBehaviour
     public SpringJoint2D joint;
     public float maxdist;
     public float mindist;
-
+    public float yoyoUpSpeed;
+    bool goUp = false;
+    bool goDown = true;
     void Start()
     {
         joint.distance = mindist;
@@ -17,20 +19,45 @@ public class YoyoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(joint.distance);
-        if (Input.GetAxis("Mouse Y") > 0)
-        { 
-            if (joint.distance < maxdist)
-            {
-                joint.distance += maxdist * Time.deltaTime;
-            }
-        }
-        else if (Input.GetAxis("Mouse Y") < 0)
+        print(Input.GetAxisRaw("Mouse Y"));
+        if (Input.GetAxisRaw("Mouse Y") <-0.1f && goDown)
         {
-            if (joint.distance > mindist)
-            {
-                joint.distance -=  maxdist * Time.deltaTime;
-            }
+            Debug.Log("goind down");
+            StopAllCoroutines();
+            StartCoroutine(goDownYoyo());
         }
+        else if (Input.GetAxisRaw("Mouse Y") > 0.1f && goUp)
+        {
+            Debug.Log("goind up");
+            StopAllCoroutines();
+            StartCoroutine(goUpYoyo());
+        }
+    }
+    IEnumerator goUpYoyo()
+    {
+        goUp = false;
+        Vector3 p = Input.mousePosition;
+        Vector3 currPosition = transform.position;
+        Vector3 pos = Camera.main.ScreenToWorldPoint(p);
+        while (joint.distance >= mindist)
+        {
+            joint.distance -= joint.distance * Time.deltaTime * yoyoUpSpeed;
+            
+            yield return null;
+        }
+        goDown = true;
+    }
+    IEnumerator goDownYoyo()
+    {
+        goDown = false;
+        Vector3 p = Input.mousePosition;
+        Vector3 currPosition = transform.position;
+        Vector3 pos = Camera.main.ScreenToWorldPoint(p);
+        while (joint.distance <= maxdist)
+        {
+            joint.distance += joint.distance * Time.deltaTime * yoyoUpSpeed;
+            yield return null;
+        }
+        goUp = true;
     }
 }

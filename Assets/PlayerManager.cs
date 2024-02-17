@@ -5,24 +5,21 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float maxOffset;
+    Rigidbody2D rb;
 
     private void Update()
     {
+        SetToMousePos();
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void SetToMousePos()
+    {
         Vector3 p = Input.mousePosition;
+        Vector3 currPosition = transform.position;
         Vector3 pos = Camera.main.ScreenToWorldPoint(p);
-        if (pos.x > (transform.position.x + maxOffset))
-        {
-            Vector3 currPosition = transform.position;
-            currPosition.x = transform.position.x + maxOffset - pos.x;
-            transform.position = currPosition;
-        }
-        if (pos.x < (transform.position.x - maxOffset))
-        {
-            Vector3 currPosition = transform.position;
-            currPosition.x = transform.position.x - maxOffset - pos.x;
-            transform.position = currPosition;
-        }
-        transform.position = pos;
-        Debug.Log(pos);
+        print(pos); 
+        currPosition.x = Mathf.Clamp(currPosition.x, pos.x - maxOffset, pos.x + maxOffset);
+        currPosition.y = pos.y;
+        transform.position = currPosition;
     }
 }
